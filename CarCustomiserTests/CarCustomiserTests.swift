@@ -9,28 +9,24 @@ import XCTest
 @testable import CarCustomiser
 
 final class CarCustomiserTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testNewCarGivesMeACarWithAllAttributesSet() {
+        let car = Car(make: "BMW", model: "X3", topSpeed: 130, acceleration: 8.4, handling: 7)
+        
+        XCTAssertEqual(car.make, "BMW")
+        XCTAssertEqual(car.model, "X3")
+        XCTAssertEqual(car.topSpeed, 130)
+        XCTAssertEqual(car.acceleration, 8.4)
+        XCTAssertEqual(car.handling, 7)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testCarCanDisplayAttributes() {
+        let car = Car(make: "BMW", model: "X3", topSpeed: 130, acceleration: 8.4, handling: 7)
+        let carStats = car.displayStats()
+        XCTAssertEqual(carStats.0, "Make: BMW")
+        XCTAssertEqual(carStats.1, "Model: X3")
+        XCTAssertEqual(carStats.2, "Top speed: 130mph")
+        XCTAssertEqual(carStats.3, "Acceleration (0-60): 8.4s")
+        XCTAssertEqual(carStats.4, "Handling: 7")
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
+

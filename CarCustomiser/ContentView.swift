@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    let car = Car(make: "BMW", model: "X3", topSpeed: 130, acceleration: 8.4, handling: 7)
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
+        let statDisplay = car.displayStats()
+        Text("""
+            \(statDisplay.0)
+            \(statDisplay.1)
+            \(statDisplay.2)
+            \(statDisplay.3)
+            \(statDisplay.4)
+        """)
         .padding()
     }
 }
