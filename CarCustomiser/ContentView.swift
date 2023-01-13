@@ -21,6 +21,8 @@ struct ContentView: View {
     @State private var wheelsPackage: Bool = false
     @State private var superPackage: Bool = false
     
+    @State var numberOfToggles:Int = 0
+    
     var body: some View {
         let statDisplay = starterCars.cars[selectedCar].displayStats()
         
@@ -29,8 +31,10 @@ struct ContentView: View {
             set: { newValue in
                 self.exhaustPackage = newValue
                 if newValue == true {
+                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].topSpeed += 10
                 } else {
+                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].topSpeed -= 10
                 }
             }
@@ -41,8 +45,10 @@ struct ContentView: View {
             set: { newValue in
                 self.tiresPackage = newValue
                 if newValue == true {
+                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].handling += 2
                 } else {
+                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].handling -= 2
                 }
             }
@@ -53,8 +59,10 @@ struct ContentView: View {
             set: { newValue in
                 self.wheelsPackage = newValue
                 if newValue == true {
+                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].acceleration -= 0.5
                 } else {
+                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].acceleration += 0.5
                 }
             }
@@ -65,10 +73,12 @@ struct ContentView: View {
             set: { newValue in
                 self.superPackage = newValue
                 if newValue == true {
+                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].topSpeed += 5
                     starterCars.cars[selectedCar].handling += 1
                     starterCars.cars[selectedCar].acceleration -= 0.25
                 } else {
+                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].topSpeed -= 5
                     starterCars.cars[selectedCar].handling -= 1
                     starterCars.cars[selectedCar].acceleration += 0.25
@@ -91,6 +101,7 @@ struct ContentView: View {
                     wheelsPackage = false
                     superPackage = false
                     selectedCar += 1
+                    numberOfToggles = 0
                 })
             }
             
