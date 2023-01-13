@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    let car = Car(make: "BMW", model: "X3", topSpeed: 130, acceleration: 8.4, handling: 7)
+    let starterCar = StarterCars()
+    var selectedCar: Int = 0
     
     var body: some View {
-        let statDisplay = car.displayStats()
+        let statDisplay = StarterCars.cars[selectedCar].displayStats()
         Text("""
             \(statDisplay.0)
             \(statDisplay.1)

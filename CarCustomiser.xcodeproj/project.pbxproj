@@ -16,6 +16,7 @@
 		2C9ADDC3297000E0001E8BF3 /* CarCustomiserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9ADDC2297000E0001E8BF3 /* CarCustomiserUITestsLaunchTests.swift */; };
 		2C9ADDD029708ADB001E8BF3 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9ADDCF29708ADB001E8BF3 /* Car.swift */; };
 		2C9ADDD129708B29001E8BF3 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9ADDCF29708ADB001E8BF3 /* Car.swift */; };
+		2CD76F942971F72800B207E8 /* StarterCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD76F932971F72800B207E8 /* StarterCars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		2C9ADDC0297000E0001E8BF3 /* CarCustomiserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCustomiserUITests.swift; sourceTree = "<group>"; };
 		2C9ADDC2297000E0001E8BF3 /* CarCustomiserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCustomiserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2C9ADDCF29708ADB001E8BF3 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		2CD76F932971F72800B207E8 /* StarterCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterCars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				2C9ADDA9297000E0001E8BF3 /* Assets.xcassets */,
 				2C9ADDAB297000E0001E8BF3 /* Preview Content */,
 				2C9ADDCF29708ADB001E8BF3 /* Car.swift */,
+				2CD76F932971F72800B207E8 /* StarterCars.swift */,
 			);
 			path = CarCustomiser;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				2C9ADDA8297000DF001E8BF3 /* ContentView.swift in Sources */,
 				2C9ADDA6297000DF001E8BF3 /* CarCustomiserApp.swift in Sources */,
+				2CD76F942971F72800B207E8 /* StarterCars.swift in Sources */,
 				2C9ADDD029708ADB001E8BF3 /* Car.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
