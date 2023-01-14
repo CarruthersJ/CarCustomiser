@@ -16,12 +16,41 @@ struct ContentView: View {
             }
         }
     }
+    
+    func resetToggles() {
+        if exhaustPackage == true {
+            starterCars.cars[selectedCar].topSpeed -= 10
+        }
+        exhaustPackage = false
+        if tiresPackage == true {
+            starterCars.cars[selectedCar].handling -= 2
+        }
+        tiresPackage = false
+        if wheelsPackage == true {
+            starterCars.cars[selectedCar].acceleration += 0.5
+        }
+        wheelsPackage = false
+        if superPackage == true {
+            starterCars.cars[selectedCar].topSpeed -= 5
+            starterCars.cars[selectedCar].handling -= 1
+            starterCars.cars[selectedCar].acceleration += 0.25
+        }
+        superPackage = false
+    }
+    
     @State private var exhaustPackage: Bool = false
     @State private var tiresPackage: Bool = false
     @State private var wheelsPackage: Bool = false
     @State private var superPackage: Bool = false
     
-    @State var numberOfToggles:Int = 0
+    @State var numberOfToggles:Int = 0 {
+        didSet {
+            if numberOfToggles > 2 {
+                numberOfToggles = 0
+                resetToggles()
+            }
+        }
+    }
     
     var body: some View {
         let statDisplay = starterCars.cars[selectedCar].displayStats()
@@ -96,16 +125,14 @@ struct ContentView: View {
                 \(statDisplay.4)
                 """)
                 Button("Next Car", action: {
-                    exhaustPackage = false
-                    tiresPackage = false
-                    wheelsPackage = false
-                    superPackage = false
+                    resetToggles()
                     selectedCar += 1
                     numberOfToggles = 0
                 })
             }
             
             Section {
+                Text("You can only have two upgrades selected. ")
                 Toggle("Exhaust Package", isOn: exhaustPackageBinding)
                 Toggle("Grip Package", isOn: tiresPackageBinding)
                 Toggle("Speedy wheels", isOn: wheelsPackageBinding)
