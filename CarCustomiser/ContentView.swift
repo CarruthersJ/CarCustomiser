@@ -36,19 +36,52 @@ struct ContentView: View {
             starterCars.cars[selectedCar].acceleration += 0.25
         }
         superPackage = false
+        remainingFunds = 1000
     }
     
     @State private var exhaustPackage: Bool = false
     @State private var tiresPackage: Bool = false
     @State private var wheelsPackage: Bool = false
     @State private var superPackage: Bool = false
+    @State private var remainingFunds = 1000
     
-    @State var numberOfToggles:Int = 0 {
-        didSet {
-            if numberOfToggles > 2 {
-                numberOfToggles = 0
-                resetToggles()
-            }
+    var exhaustPackageEnabled: Bool {
+        if remainingFunds >= 500 {
+            return true
+        } else if remainingFunds == 0 && exhaustPackage == false {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    var tiresPackageEnabled: Bool {
+        if remainingFunds >= 500 {
+            return true
+        } else if remainingFunds == 0 && tiresPackage == false {
+            return false
+        } else {
+            return true
+        }
+    }
+        
+    var wheelsPackageEnabled: Bool {
+        if remainingFunds >= 500 {
+            return true
+        } else if remainingFunds == 0 && wheelsPackage == false {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    var superPackageEnabled: Bool {
+        if remainingFunds >= 1000 {
+            return true
+        } else if remainingFunds == 500 && superPackage == false {
+            return false
+        } else {
+            return true
         }
     }
     
@@ -60,11 +93,11 @@ struct ContentView: View {
             set: { newValue in
                 self.exhaustPackage = newValue
                 if newValue == true {
-                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].topSpeed += 10
+                    remainingFunds -= 500
                 } else {
-                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].topSpeed -= 10
+                    remainingFunds += 500
                 }
             }
         )
@@ -74,11 +107,11 @@ struct ContentView: View {
             set: { newValue in
                 self.tiresPackage = newValue
                 if newValue == true {
-                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].handling += 2
+                    remainingFunds -= 500
                 } else {
-                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].handling -= 2
+                    remainingFunds += 500
                 }
             }
         )
@@ -88,11 +121,11 @@ struct ContentView: View {
             set: { newValue in
                 self.wheelsPackage = newValue
                 if newValue == true {
-                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].acceleration -= 0.5
+                    remainingFunds -= 500
                 } else {
-                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].acceleration += 0.5
+                    remainingFunds += 500
                 }
             }
         )
@@ -102,42 +135,48 @@ struct ContentView: View {
             set: { newValue in
                 self.superPackage = newValue
                 if newValue == true {
-                    self.numberOfToggles += 1
                     starterCars.cars[selectedCar].topSpeed += 5
                     starterCars.cars[selectedCar].handling += 1
                     starterCars.cars[selectedCar].acceleration -= 0.25
+                    remainingFunds -= 1000
                 } else {
-                    self.numberOfToggles -= 1
                     starterCars.cars[selectedCar].topSpeed -= 5
                     starterCars.cars[selectedCar].handling -= 1
                     starterCars.cars[selectedCar].acceleration += 0.25
+                    remainingFunds += 1000
                 }
             })
-        
-        Form {
-            
-            VStack(alignment: .leading, spacing: 20) {
-                Text("""
+        VStack {
+            Form {
+                
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("""
                 \(statDisplay.0)
                 \(statDisplay.1)
                 \(statDisplay.2)
                 \(statDisplay.3)
                 \(statDisplay.4)
                 """)
-                Button("Next Car", action: {
-                    resetToggles()
-                    selectedCar += 1
-                    numberOfToggles = 0
-                })
+                    Button("Next Car", action: {
+                        resetToggles()
+                        selectedCar += 1
+                    })
+                }
+                
+                Section {
+                    Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding)
+                        .disabled(!exhaustPackageEnabled)
+                    Toggle("Grip Package (Cost: 500)", isOn: tiresPackageBinding)
+                        .disabled(!tiresPackageEnabled)
+                    Toggle("Speedy wheels (Cost: 500)", isOn: wheelsPackageBinding)
+                        .disabled(!wheelsPackageEnabled)
+                    Toggle("Upgrade all stats (Cost: 1000)", isOn: superPackageBinding)
+                        .disabled(!superPackageEnabled)
+                }
             }
-            
-            Section {
-                Text("You can only have two upgrades selected. ")
-                Toggle("Exhaust Package", isOn: exhaustPackageBinding)
-                Toggle("Grip Package", isOn: tiresPackageBinding)
-                Toggle("Speedy wheels", isOn: wheelsPackageBinding)
-                Toggle("Upgrade all stats", isOn: superPackageBinding)
-            }
+            Text("Remaining funds: \(remainingFunds)")
+                .foregroundColor(.green)
+                .baselineOffset(25)
         }
     }
 }
