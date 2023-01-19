@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C135B862979B70D0075BA01 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9ADDCF29708ADB001E8BF3 /* Car.swift */; };
+		2C135B872979B7B40075BA01 /* StarterCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD76F932971F72800B207E8 /* StarterCars.swift */; };
 		2C9ADDA6297000DF001E8BF3 /* CarCustomiserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9ADDA5297000DF001E8BF3 /* CarCustomiserApp.swift */; };
 		2C9ADDA8297000DF001E8BF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9ADDA7297000DF001E8BF3 /* ContentView.swift */; };
 		2C9ADDAA297000E0001E8BF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C9ADDA9297000E0001E8BF3 /* Assets.xcassets */; };
@@ -286,6 +288,8 @@
 			files = (
 				2C9ADDC1297000E0001E8BF3 /* CarCustomiserUITests.swift in Sources */,
 				2C9ADDC3297000E0001E8BF3 /* CarCustomiserUITestsLaunchTests.swift in Sources */,
+				2C135B872979B7B40075BA01 /* StarterCars.swift in Sources */,
+				2C135B862979B70D0075BA01 /* Car.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
